@@ -283,9 +283,7 @@ Access the web interface at `http://your-domain.com`:
 If you use ClinASO in your research, please cite:
 
 ```
-Chen, S., Dang, Y., & Lai, F. (2025). ClinASO: A Comprehensive Web Platform
-for Gapmer Antisense Oligonucleotide Design and Analysis.
-School of Life Sciences, Yunnan University.
+ClinASO: a computational-experimental platform for rapid drug discovery of gapmer antisense oligonucleotides
 ```
 
 ---
