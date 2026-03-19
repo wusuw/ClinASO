@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gapmer ASO Designer - Yunnan University</title>
+    <link rel="icon" href="./icon.png" type="image/png">
+    <style>
+        /* Base style reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4edf5 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header style */
+        header {
+            background: linear-gradient(90deg, #1a3a6c 0%, #2c5e92 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .yun-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .yun-logo img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .aso-diagram-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .aso-diagram svg {
+            display: block;
+            margin: 0 auto;
+        }
+        
+        .title-container h1 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .title-container p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.3rem;
+        }
+        
+        /* Main content area */
+        main {
+            flex: 1;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            width: 100%;
+        }
+        
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Form styles */
+        .form-section, .mechanism-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+        
+        .form-section:hover, .mechanism-section:hover {
+            transform: translateY(-5px);
+        }
+        
+        .form-section h2, .mechanism-section h2, .intro-section h2 {
+            color: #2c5e92;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #e4edf5;
+            font-size: 1.8rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #1a3a6c;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #d1dbe5;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #2c5e92;
+            box-shadow: 0 0 0 3px rgba(44, 94, 146, 0.1);
+        }
+        
+        .btn-submit {
+            background: linear-gradient(90deg, #2c5e92 0%, #3a7bb8 100%);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.8rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn-submit:hover {
+            background: linear-gradient(90deg, #1a3a6c 0%, #2c5e92 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(26, 58, 108, 0.2);
+        }
+        
+        /* Introduction section */
+        .intro-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .intro-content {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .feature-card {
+            background: #f8fbff;
+            border-left: 4px solid #2c5e92;
+            padding: 1.2rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .feature-card h3 {
+            color: #1a3a6c;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .feature-card h3::before {
+            content: "✓";
+            color: #3a7bb8;
+            font-weight: bold;
+        }
+        
+        .dna-animation {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2rem;
+            color: #2c5e92;
+        }
+        
+        /* SVG Diagram Styling */
+        .aso-diagram-container {
+            width: 100%;
+            position: relative;
+            padding-bottom: 100%; /* Creates 1:1 aspect ratio */
+            background: #f8fbff;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+        
+        .aso-diagram {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .aso-diagram svg {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        /* Mechanism illustration styles */
+        .mechanism-content {
+            display: grid;
+            gap: 1.5rem;
+        }
+        
+        .mechanism-desc {
+            background: #f8fbff;
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px dashed #3a7bb8;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1a3a6c;
+        }
+        
+        .mechanism-steps {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .mechanism-step {
+            background: #e6f0ff;
+            padding: 0.8rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .step-icon {
+            width: 24px;
+            height: 24px;
+            background: #2c5e92;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        @media (max-width: 480px) {
+            .mechanism-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Footer styles */
+        footer {
+            background: linear-gradient(90deg, #1a3a6c 0%, #2c5e92 100%);
+            color: white;
+            padding: 2.5rem 0 1.5rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .partner-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .partner-link {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .partner-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Response message */
+        .response-message {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 8px;
+            display: none;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #a5d6a7;
+        }
+        
+        .error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ef9a9a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header - Including Yunnan University Logo with icon.png -->
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="yun-logo">
+                    <img src="./icon.png" alt="Yunnan University Logo">
+                </div>
+                <div class="title-container">
+                    <h1>Gapmer ASO Designer</h1>
+                    <p>Gapmer Antisense Oligonucleotide Design Platform</p>
+                </div>
+            </div>
+            <div class="dna-animation">🧬</div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        <div class="content-grid">
+            <!-- Left Column -->
+            <div class="left-column">
+                <!-- Form Section -->
+                <section class="form-section">
+                    <h2>Gapmer ASO Design Submission</h2>
+                    <form id="analysis-form">
+                        <div class="form-group">
+                            <label for="gene-name">Gene Name</label>
+                            <input type="text" id="gene-name" name="gene_name" required placeholder="e.g., TP53, BRCA1">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="For receiving analysis results">
+                        </div>
+                        <button type="submit" class="btn-submit">Start Design</button>
+                    </form>
+                    <div id="response-message" class="response-message"></div>
+                </section>
+
+                <!-- ASO Mechanism Section -->
+                <section class="mechanism-section">
+                    <h2>Gapmer ASO Mechanism </h2>
+                    <div class="mechanism-content">
+                        <div class="aso-diagram-container">
+                            <div class="aso-diagram">
+                                <svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+                                    <image href="./asoM2.svg" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" x="0" y="0"/>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="mechanism-desc">
+                            Antisense oligonucleotides (ASOs) bind to target RNA through complementary base pairing. 
+                            This binding event recruits RNase H1 enzyme, which cleaves the target RNA, 
+                            thereby preventing protein translation and reducing target gene expression.
+                        </div>
+                        
+                        
+                        <div class="mechanism-steps">
+                            <div class="mechanism-step">
+                                <div class="step-icon">1</div>
+                                <div>Antisense oligonucleotides (ASOs) bind to the target RNA via complementary base pairing</div>
+                            </div>
+                            <div class="mechanism-step">
+                                <div class="step-icon">2</div>
+                                <div>Recruit intracellular RNase H1 enzyme</div>
+                            </div>
+                            <div class="mechanism-step">
+                                <div class="step-icon">3</div>
+                                <div>RNase H1 catalyzes hydrolysis of the RNA strand in the RNA-DNA heteroduplex</div>
+                            </div>
+                            <div class="mechanism-step">
+                                <div class="step-icon">4</div>
+                                <div>Degradation of target RNA blocks protein translation</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column - Introduction Section -->
+            <section class="intro-section">
+                <h2>About Gapmer ASO Designer</h2>
+                <div class="intro-content">
+                    <div class="feature-card">
+                        <h3>Platform Overview</h3>
+                        <!-- ASO Diagram Container -->
+                        <div class="aso-diagram-container">
+                            <div class="aso-diagram">
+                                <svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg">
+                                    <image href="./GapmerASOdesigneroverviewer.svg" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <p>Gapmer ASO Designer is an Antisense Oligonucleotide (ASO) design platform developed by the Bioinformatics team at Yunnan University. The platform utilizes advanced algorithms to provide high-efficiency, precise ASO design solutions.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Technical Mechanism</h3>
+                        <p>Leveraging sequence characteristics, secondary structures, and epigenetic information of target genes in combination with machine learning models to predict optimal ASO binding sites, enhancing silencing efficiency and specificity.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Analysis Pipeline</h3>
+                        <p>1. Gene Sequence Acquisition → 2. Target Site Prediction → 3. Specificity Validation → 4. Off-target Effect Assessment → 5. Result Optimization → 6. Report Generation</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Applications</h3>
+                        <p>Gene function research, drug discovery, genetic disease therapy, cancer targeted treatments, and other biomedical research domains.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer - Includes Partnership Links -->
+    <footer>
+        <div class="footer-content">
+            <div class="partner-links">
+                <a href="https://www.ncbi.nlm.nih.gov/" class="partner-link" target="_blank">
+                    <span>NCBI</span>
+                </a>
+                <a href="https://genome.ucsc.edu/" class="partner-link" target="_blank">
+                    <span>UCSC Genome Browser</span>
+                </a>
+                <a href="https://www.genecards.org/" class="partner-link" target="_blank">
+                    <span>GeneCards</span>
+                </a>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Bioinformatics Research Center, Yunnan University | Gapmer ASO Designer Platform
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handler
+        document.getElementById('analysis-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const geneName = document.getElementById('gene-name').value;
+            const email = document.getElementById('email').value;
+            const submitBtn = document.querySelector('.btn-submit');
+            const responseMessage = document.getElementById('response-message');
+            
+            // Show loading state
+            submitBtn.textContent = 'Analyzing...';
+            submitBtn.disabled = true;
+            responseMessage.style.display = 'none';
+            
+            try {
+                const response = await fetch('http://47.83.196.133/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        gene_name: geneName,
+                        email: email
+                    })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    responseMessage.textContent = data.message;
+                    responseMessage.className = 'response-message success';
+                    responseMessage.style.display = 'block';
+                    
+                    // Reset form
+                    document.getElementById('analysis-form').reset();
+                } else {
+                    responseMessage.textContent = data.error || 'Request failed, please try again';
+                    responseMessage.className = 'response-message error';
+                    responseMessage.style.display = 'block';
+                }
+            } catch (error) {
+                responseMessage.textContent = 'Network error, please check your connection';
+                responseMessage.className = 'response-message error';
+                responseMessage.style.display = 'block';
+            } finally {
+                submitBtn.textContent = 'Start Design';
+                submitBtn.disabled = false;
+            }
+        });
+
+        // DNA animation effect
+        const dnaElement = document.querySelector('.dna-animation');
+        const symbols = ['🧬', '🔬', '🧪', '🧫'];
+        let currentIndex = 0;
+        
+        setInterval(() => {
+            dnaElement.textContent = symbols[currentIndex];
+            currentIndex = (currentIndex + 1) % symbols.length;
+        }, 1500);
+    </script>
+</body>
+</html>

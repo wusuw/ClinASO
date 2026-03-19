@@ -1,0 +1,16 @@
+[Unit]
+Description=Genetic Analysis Flask App
+After=network.target
+
+[Service]
+User=root
+ExecStart=/root/miniconda3/bin/python /var/www/genetic-analysis/app/app.py
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=genetic-analysis
+
+[Install]
+WantedBy=multi-user.target
+

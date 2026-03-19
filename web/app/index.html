@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gapmer ASO Designer - Yunnan University</title>
+    <link rel="icon" href="./icon.png" type="image/png">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="yun-logo">
+                    <img src="./icon2.png" alt="Yunnan University Logo">
+                </div>
+                <div class="title-container">
+                    <h1>ClinASO</h1>
+                    <p>Gapmer Antisense Oligonucleotide Design Platform</p>
+                </div>
+            </div>
+            <div class="dna-animation">🧬</div>
+        </div>
+    </header>
+
+    <!-- Tab Navigation -->
+    <div class="tabs-container">
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="tab-about">About & Mechanism</button>
+            <button class="tab-btn" data-tab="tab-design">Gapmer Design</button>
+            <button class="tab-btn" data-tab="tab-sequence">Homology Analysis</button>
+            <button class="tab-btn" data-tab="tab-snp">SNP Analysis</button>
+            <button class="tab-btn" data-tab="tab-offtarget">Off-Target Analysis</button>
+            <button class="tab-btn" data-tab="tab-tools">Citation & Contact</button>
+        </div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main>
+        <!-- Tab 1: About & Mechanism -->
+        <div id="tab-about" class="tab-content active">
+            <div class="content-grid">
+                <!-- Left Column - Introduction Section -->
+                <section class="intro-section">
+                    <h2>About Clin ASO Designer</h2>
+                    <div class="intro-content">
+                        <div class="feature-card">
+                            <h3>Platform Overview</h3>
+                            <!-- ASO Diagram Container -->
+                            <div class="aso-diagram-container">
+                                <div class="aso-diagram">
+                                    <img src="./GapmerASOdesigneroverviewer.png" alt="Gapmer ASO Designer Overview" class="aso-image">
+                                </div>
+                            </div>                            
+                            <p>Gapmer ASO Designer is an Antisense Oligonucleotide (ASO) design platform developed by the Bioinformatics team at Yunnan University. The platform utilizes advanced algorithms to provide high-efficiency, precise ASO design solutions.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <h3>Analysis Pipeline</h3>
+                            <p>1. Gene Sequence Acquisition → 2. Target Site Prediction → 3. Specificity Validation → 4. Off-target Effect Assessment → 5. Result Optimization → 6. Report Generation</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Right Column -->
+                <div class="right-column">
+                    <!-- ASO Mechanism Section -->
+                    <section class="mechanism-section">
+                        <h2>Gapmer ASO Mechanism</h2>
+                        <div class="mechanism-content">
+                            <div class="aso-diagram-m">
+                                <div class="aso-diagram">
+                                    <svg viewBox="0 0 900 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+                                        <image href="./asoM2.png" width="100%" height="100%" preserveAspectRatio="xMidYMid meet"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="mechanism-desc">
+                                reference: <a href="https://www.nature.com/articles/s41573-020-0075-7">Roberts, T.C., Langer, R. & Wood, M.J.A. Advances in oligonucleotide drug delivery. Nat Rev Drug Discov 19, 673–694 (2020). https://doi.org/10.1038/s41573-020-0075-7</a>
+                                Antisense oligonucleotides (ASOs) bind to target RNA through complementary base pairing. 
+                                This binding event recruits RNase H1 enzyme, which cleaves the target RNA, 
+                                thereby preventing protein translation and reducing target gene expression.
+                            </div>
+                            
+                            <div class="mechanism-steps">
+                                <div class="mechanism-step">
+                                    <div class="step-icon">1</div>
+                                    <div>Antisense oligonucleotides (ASOs) bind to the target RNA via complementary base pairing</div>
+                                </div>
+                                <div class="mechanism-step">
+                                    <div class="step-icon">2</div>
+                                    <div>Recruit intracellular RNase H1 enzyme</div>
+                                </div>
+                                <div class="mechanism-step">
+                                    <div class="step-icon">3</div>
+                                    <div>RNase H1 catalyzes hydrolysis of the RNA strand in the RNA-DNA heteroduplex</div>
+                                </div>
+                                <div class="mechanism-step">
+                                    <div class="step-icon">4</div>
+                                    <div>Degradation of target RNA blocks protein translation</div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab 2: ASO Design -->
+        <div id="tab-design" class="tab-content">
+            <section class="form-section">
+                <h2>Gapmer ASO Design Submission</h2>
+                <form id="analysis-form">
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="species">Target Species</label>
+                                <select id="species" name="species" required>
+                                    <option value="human" selected>Human (Homo sapiens)</option>
+                                    <option value="mouse" disabled>Mouse (Mus musculus)</option>
+                                    <option value="rat" disabled>Rat (Rattus norvegicus)</option>
+                                    <option value="other" disabled>Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="gene-name">Gene Name</label>
+                                <input type="text" id="gene-name" name="gene_name" required placeholder="e.g., TP53, BRCA1">
+                                <small class="form-text text-muted">Gene symbol</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="aso_len">ASO Length</label>
+                                <select id="aso_len" name="aso_len" required>
+                                    <option value="16" selected>16</option>
+                                    <option value="17">17</option>
+                                    <option value="18">18</option>
+                                    <option value="19">19</option>
+                                    <option value="20">20</option>
+                                </select>
+                                <small class="form-text text-muted">The most commonly used parameters are cEt 16nt, MOE 20nt.</small>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="homologous-species">Select Homologous Species</label>
+                                <select id="homologous-species" name="homologous_species" required>
+                                    <option value="all" selected>All Species(6)</option>
+                                    <option value="crab-eating_macaque">Crab-eating Macaque</option>
+                                    <option value="mouse">Mouse</option>
+                                    <option value="rat">Rat</option>
+                                    <option value="pig">Pig</option>
+                                    <option value="rabbit">Rabbit</option>
+                                    <option value="guinea_pig">Guinea Pig</option>
+                                    <option value="none">No requirements</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="gc-content">MaxGC Content</label>
+                                <input 
+                                    type="number" 
+                                    id="gc-content" 
+                                    name="gc_content" 
+                                    min="0.35" 
+                                    max="0.7" 
+                                    step="0.05" 
+                                    value="0.5"
+                                    required
+                                    oninput="validateGCContent(this)"
+                                >
+                                <small class="form-text text-muted">Value must be between 0.35 and 0.7</small>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="aso-count">Number of ASOs to Design</label>
+                                <input 
+                                    type="number" 
+                                    id="aso-count" 
+                                    name="aso_count" 
+                                    min="1" 
+                                    max="1500" 
+                                    value="10"
+                                    required
+                                    oninput="validateAsoCount(this)"
+                                >
+                                <small class="form-text text-muted">Number of ASO sequences to generate</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="priority">Selection Priority</label>
+                                <select id="priority" name="priority" required>
+                                    <option value="Homologous" selected>Homologous</option>
+                                    <option value="efficiency">Efficiency</option>
+                                </select>
+                                <small class="form-text text-muted">Priority for filtering ASO sequences</small>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" required placeholder="For receiving analysis results">
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Start Design</button>
+                </form>
+                <div id="response-message" class="response-message"></div>
+            </section>
+        </div>
+
+        <!-- Tab 3: Homology Analysis -->
+        <div id="tab-sequence" class="tab-content">
+            <section class="form-section">
+                <h2>Investigate ASO Homology</h2>
+                <h3>Investigating the compatibility of ASO across different species (Based on RNAhybrid v2.12).</h3>
+                <form id="sequence-form">
+                    <div class="form-group">
+                        <label for="gene-name">Gene Name</label>
+                        <input type="text" id="sequence-gene-name" name="gene_name" required placeholder="Gene Symbol">
+                    </div>
+                    <div class="form-group">
+                        <label for="gene-sequence">ASO Sequence</label>
+                        <textarea id="sequence-gene-sequence" name="gene_sequence" required placeholder="Paste ASO sequence here..." rows="6"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="analysis-type">Species</label>
+                        <select id="analysis-type" name="analysis_type" required>
+                            <option value="all" selected>All Species(6)</option>
+                            <option value="crab-eating_macaque">Crab-eating Macaque</option>
+                            <option value="mouse">Mouse</option>
+                            <option value="rat">Rat</option>
+                            <option value="pig">Pig</option>
+                            <option value="rabbit">Rabbit</option>
+                            <option value="guinea_pig">Guinea Pig</option>
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="sequence-email">Email Address</label>
+                            <input type="email" id="sequence-email" name="email" required placeholder="For receiving analysis results">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Analyze Sequence</button>
+                </form>
+                <div id="sequence-response" class="response-message"></div>
+            </section>
+        </div>
+
+        <!-- Tab 4: SNP Analysis -->
+        <div id="tab-snp" class="tab-content">
+            <section class="form-section">
+                <h2>Investigate SNP in ASO</h2>
+                <h3>SNP157</h3>
+                <form id="snp-form">
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="snp_gene_name">Gene Name</label>
+                            <input type="text" id="snp_gene_name" name="snp_gene_name" required placeholder="Enter gene name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="snp_aso_sequence">ASO Sequence</label>
+                            <input type="text" id="snp_aso_sequence" name="snp_aso_sequence" required placeholder="Enter ASO sequence">
+                        </div>
+                    
+                        <div class="form-group">
+                            <label for="snp_email">Email Address</label>
+                            <input type="email" id="snp_email" name="snp_email" required placeholder="For receiving analysis results">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Analyze</button>
+                </form>
+                <div id="snp-response" class="response-message"></div>
+            </section>
+        </div>
+
+        <!-- Tab 5: Off-Target Analysis -->
+        <div id="tab-offtarget" class="tab-content">
+            <section class="off-target-form">
+                <h2>Off-Target Effect Analysis</h2>
+                <form id="offtarget-form">
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="target_gene">Target Gene</label>
+                                <input id="target_gene" name="target_gene" required placeholder="Gene symbol" rows="5"></input>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <div class="form-group">
+                                <label for="target_aso">ASO Sequence</label>
+                                <input id="target_aso" name="target_aso" required placeholder="Enter ASO sequence">
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="genome-database">Genome Database</label>
+                        <select id="genome-database" name="genome_database" required disabled>
+                            <option value="human">Human Genome (GRCh38)</option>
+                            <option value="mouse">Mouse Genome (GRCm39)</option>
+                        </select>
+                    </div>
+                    <div class="form-col">
+                        <div class="form-group">
+                            <label for="offtarget_email">Email Address</label>
+                            <input type="email" id="offtarget_email" name="email" required placeholder="For receiving analysis results">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">Analyze Off-Target Effects</button>
+                </form>
+                <div id="offtarget-response" class="response-message"></div>
+            </section>
+        </div>
+        <!-- Tab 6: Citation & Contact -->
+        <div id="tab-tools" class="tab-content">
+            <section class="contact-section">
+                <h2>Citation & Contact Information</h2>
+                
+                <div class="contact-container">
+                    <div class="contact-card">
+                        <h3>Developer & Contact</h3>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <div class="contact-icon">👤</div>
+                                <div>
+                                    <h3>Principal Investigator</h3>
+                                    <h4>Yunkun Dang,Fan Lai</H4>
+                                    <p>School of Life Sciences</p>
+                                    <p>Yunnan University</p>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon">👤</div>
+                                <div>
+                                    <h4>ShunKai Chen</H4>
+                                    <p>School of Life Sciences</p>
+                                    <p>Yunnan University</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">📧</div>
+                                <div>
+                                    <h4>Email</h4>
+                                    <p>chenshunkai@stu.ynu.edu.cn</p>
+                                </div>
+                            </div>                            
+                            <div class="contact-item">
+                                <div class="contact-icon">📱</div>
+                                <div>
+                                    <h4>Phone</h4>
+                                    <p>+86 18725174715</p>
+                                </div>
+                            </div>                            
+                            <div class="contact-item">
+                                <div class="contact-icon">🏢</div>
+                                <div>
+                                    <h4>Address</h4>
+                                    <p>School of Life Sciences</p>
+                                    <p>Yunnan University</p>
+                                    <p>Kunming, Yunnan Province, China</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tools-card">
+                        <h3>Available Tools</h3>
+                        <div class="tools-list">
+                            <div class="tool-item">
+                                <h4>ASO Design Tool</h4>
+                                <p>Design gapmer ASOs with optimized parameters</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Homology Analysis Tool</h4>
+                                <p>Analyze ASO compatibility across species</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>SNP Analysis Tool</h4>
+                                <p>Evaluate SNP effects on ASO binding</p>
+                            </div>
+                            <div class="tool-item">
+                                <h4>Off-Target Analysis Tool</h4>
+                                <p>Predict potential off-target effects</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+            <!-- Partner Links -->
+            <div class="partner-links">
+                <a href="https://www.ncbi.nlm.nih.gov/" class="partner-link" target="_blank">
+                    <span>NCBI</span>
+                </a>
+                <a href="https://genome.ucsc.edu/" class="partner-link" target="_blank">
+                    <span>UCSC Genome Browser</span>
+                </a>
+                <a href="https://www.genecards.org/" class="partner-link" target="_blank">
+                    <span>GeneCards</span>
+                </a>
+        </div>
+        <div class="copyright">
+            &copy; 2025 School of Life Sciences, Yunnan University | Gapmer ASO Designer Platform
+        </div>
+    </div>
+</footer>
+    <script src="./script.js"></script>
+</body>
+</html>

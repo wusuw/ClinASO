@@ -1,0 +1,40 @@
+# Logs
+*.log
+logs/
+
+# Output files
+outfile/
+results/
+
+# Task records
+task_records.json
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Backup files
+*.bak
+*.bak.*
+*.tar.gz
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Large genomic data (download separately)
+asodesigner/reference/
+snp/GCF_000001405.40.gz
+snp/GCF_000001405.40.gz.tbi
+snp/freq.vcf.gz
+snp/freq.vcf.gz.tbi
+offtarget/GRCh38.gene2.fasta
+asodesigner/text/gene_orthologs
+
+# Environment
+.env
+venv/
