@@ -301,12 +301,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Email:** chenshunkai@stu.ynu.edu.cn
 - **Institution:** School of Life Sciences, Yunnan University, Kunming, China
 
----
-
-## Acknowledgments
-
-- [RNAhybrid](https://bibiserv.cebitec.uni-bielefeld.de/rnahybrid/) — miRNA target prediction
-- [bedtools](https://bedtools.readthedocs.io/) — genome arithmetic
-- [bcftools](https://samtools.github.io/bcftools/) — variant calling
-- [NCBI](https://www.ncbi.nlm.nih.gov/) — genomic reference data
-- [dbSNP](https://www.ncbi.nlm.nih.gov/snp/) — SNP database
